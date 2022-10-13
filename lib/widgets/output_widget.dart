@@ -12,9 +12,9 @@ class OutPutWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(left:270,bottom: 49.78,top:10 ),
           width: 358,
-          child: Text('Out',
+          child: Text('2+7+9',
             style: TextStyles.sfprotextRegular25
-                .copyWith(color: Color(0xFF969696), fontSize: 48),),
+                .copyWith(color: CustomColor.deYork, fontSize: 48)),
         ), Container(
           padding: const EdgeInsets.only(left:270 ),
           width: 358,
