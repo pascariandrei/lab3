@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/resources/fonts.dart';
 import '../resources/custom_colors.dart';
 import '../resources/text_styles.dart';
 import 'btn-widget.dart';
@@ -71,8 +72,8 @@ class _GridWidgetState extends State<GridWidget> {
           children: [
             Text(
               'Calculator',
-              style: TextStyles.sfprotextRegular25
-                  .copyWith(color: CustomColor.black, fontSize: 24),
+              style: TextStyles.sfprotext1
+                  .copyWith(color: CustomColor.black, fontSize: 24,fontFamily: 'SFProTextRegular'),
             ),
             Row(
               children: [
@@ -87,16 +88,16 @@ class _GridWidgetState extends State<GridWidget> {
               padding: const EdgeInsets.only(left: 5, bottom: 18, right: 10),
               width: 358,
               child: Text(history,
-                  style: TextStyles.sfprotextRegular25
-                      .copyWith(color: Color(0xFF969696), fontSize: 48)),
+                  style: TextStyles.sfprotext1
+                      .copyWith(color: Color(0xFF969696), fontSize: 48, fontFamily: 'SFProTextRegular')),
             ),
             Container(
               alignment: Alignment(1.0, 1.0),
               padding: const EdgeInsets.only(left: 5),
               width: 358,
               child: Text(result,
-                  style: TextStyles.sfprotextRegular25
-                      .copyWith(color: Color(0xFF969696), fontSize: 48)),
+                  style: TextStyles.sfprotext1
+                      .copyWith(color: Color(0xFF969696), fontSize: 48,fontFamily: 'SFProTextRegular')),
             ),
             Expanded(
               flex: 3,

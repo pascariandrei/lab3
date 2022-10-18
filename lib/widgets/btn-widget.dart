@@ -20,8 +20,8 @@ class Button extends StatelessWidget {
       onPressed: () =>click(text),
       child: Text(
         '$text',
-        style: TextStyles.sfprotextRegular25
-            .copyWith(color: Color(color), fontSize: 32),
+        style: TextStyles.sfprotext1
+            .copyWith(color: Color(color), fontSize: 32,fontFamily: 'SFProTextRegular'),
       ),
     );
   }
