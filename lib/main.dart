@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calculator/widgets/homepage_widget.dart';
+import 'package:flutter_calculator/widgets/grid_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +14,13 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: HomePage(),
+      home: GridWidget(),
 
     );
   }
+}
+
+class GetMaterialApp {
+
 }
 
