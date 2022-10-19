@@ -12,13 +12,88 @@ class GridWidget extends StatefulWidget {
 }
 
 class _GridWidgetState extends State<GridWidget> {
-   late double firstNum;
-   late double secondNum;
+  late double firstNum;
+  late double secondNum;
+  double? isDouble;
+  int? isInt;
   String history = '';
   String result = '';
   String textDisplay = '';
   String operation = '';
-  double dbl = 0.0;
+
+  void printResultplus(String el){
+    result = (firstNum + secondNum).toString();
+    if(result.toString().substring(result.toString().length - 2, result.toString().length) == ".0"){
+      result = result.toString().substring(0, result.toString().length -2 );
+    }else if(result.toString().substring(
+        result.toString().length - 2, result.toString().length) !=
+        ".0"){
+      result = result.toString();
+    }
+  }
+  void printResultminus(String el){
+    result = (firstNum - secondNum).toString();
+    if(result.toString().substring(result.toString().length - 2, result.toString().length) == ".0"){
+      result = result.toString().substring(0, result.toString().length -2 );
+    }else if(result.toString().substring(
+        result.toString().length - 2, result.toString().length) !=
+        ".0"){
+      result = result.toString();
+    }
+  }
+  void printResultmult(String el){
+    result = (firstNum * secondNum).toString();
+    if(result.toString().substring(result.toString().length - 2, result.toString().length) == ".0"){
+      result = result.toString().substring(0, result.toString().length -2 );
+    }else if(result.toString().substring(
+        result.toString().length - 2, result.toString().length) !=
+        ".0"){
+      result = result.toString();
+    }
+  }
+  void printResultdiv(String el){
+    result = (firstNum / secondNum).toString();
+    if(result.toString().substring(result.toString().length - 2, result.toString().length) == ".0"){
+      result = result.toString().substring(0, result.toString().length -2 );
+    }else if(result.toString().substring(
+        result.toString().length - 2, result.toString().length) !=
+        ".0"){
+      result = result.toString();
+    }
+  }
+
+
+  void doubleparse(String el){
+    if (secondNum.toString().substring(
+        secondNum.toString().length - 2, secondNum.toString().length ) ==
+        ".0" && firstNum.toString().substring(
+        firstNum.toString().length - 2, firstNum.toString().length) ==
+        ".0") {
+      history =
+      "${firstNum.toString().substring(0, firstNum.toString().length - 2)} $el ${secondNum.toString().substring(0, secondNum.toString().length - 2)}";
+      //"${firstNum.toString()} + ${secondNum.toString().substring(0, secondNum.toString().length - 2)} $el";
+    } else if(secondNum.toString().substring(
+        secondNum.toString().length - 2, secondNum.toString().length ) !=
+        ".0" && firstNum.toString().substring(
+        firstNum.toString().length - 2, firstNum.toString().length) ==
+        ".0"){
+      history =
+      "${firstNum.toString().substring(0, firstNum.toString().length - 2)} $el ${secondNum.toString()}";
+    }
+    else if(secondNum.toString().substring(
+        secondNum.toString().length - 2, secondNum.toString().length ) ==
+        ".0" && firstNum.toString().substring(
+        firstNum.toString().length - 2, firstNum.toString().length) !=
+        ".0"){
+      history =
+      "${firstNum.toString()} $el ${secondNum.toString().substring(0, secondNum.toString().length - 2)}";
+    }
+
+    else {
+      history = "$firstNum $el $secondNum";
+    }
+  }
+
 
   void btnOnClick(String el) {
     if (el == 'C') {
@@ -28,27 +103,33 @@ class _GridWidgetState extends State<GridWidget> {
       result = '';
       history = '';
     } else if (el == '+' || el == '-' || el == '*' || el == '/') {
-      firstNum =double.parse(textDisplay) ;
+      firstNum = double.parse(textDisplay);
       result = '';
-      history = "${firstNum.toString().substring(0, firstNum.toString().length - 2)} $el ";
+      if (firstNum.toString().substring(
+              firstNum.toString().length - 2, firstNum.toString().length) ==
+          ".0") {
+        history =
+            "${firstNum.toString().substring(0, firstNum.toString().length - 2)} $el";
+      } else {
+        history = "$firstNum $el";
+      }
       operation = el;
     } else if (el == '=') {
       secondNum = double.parse(textDisplay);
-      if (operation == '+') {
-        result = (firstNum + secondNum).toString();
-        history = "$firstNum + $secondNum";
-      }
+      doubleparse(operation);
+      printResultplus(operation);
+      //result = (firstNum + secondNum).toString();
       if (operation == '-') {
-        result = (firstNum - secondNum).toString();
-        history = "$firstNum - $secondNum";
+        doubleparse(operation);
+        printResultminus(operation);
       }
       if (operation == '*') {
-        result = (firstNum * secondNum).toString();
-        history = "$firstNum * $secondNum";
+        doubleparse(operation);
+        printResultmult(operation);
       }
       if (operation == '/') {
-        result = (firstNum / secondNum).toString();
-        history = "$firstNum / $secondNum";
+        doubleparse(operation);
+        printResultdiv(operation);
       }
     } else if (el == 'Del') {
       firstNum = double.parse(textDisplay);
@@ -72,8 +153,10 @@ class _GridWidgetState extends State<GridWidget> {
           children: [
             Text(
               'Calculator',
-              style: TextStyles.sfprotext1
-                  .copyWith(color: CustomColor.black, fontSize: 24,fontFamily: 'SFProTextRegular'),
+              style: TextStyles.sfprotext1.copyWith(
+                  color: CustomColor.black,
+                  fontSize: 24,
+                  fontFamily: 'SFProTextRegular'),
             ),
             Row(
               children: [
@@ -88,16 +171,20 @@ class _GridWidgetState extends State<GridWidget> {
               padding: const EdgeInsets.only(left: 5, bottom: 18, right: 10),
               width: 358,
               child: Text(history,
-                  style: TextStyles.sfprotext1
-                      .copyWith(color: Color(0xFF969696), fontSize: 48, fontFamily: 'SFProTextRegular')),
+                  style: TextStyles.sfprotext1.copyWith(
+                      color: Color(0xFF969696),
+                      fontSize: 48,
+                      fontFamily: 'SFProTextRegular')),
             ),
             Container(
               alignment: Alignment(1.0, 1.0),
               padding: const EdgeInsets.only(left: 5),
               width: 358,
               child: Text(result,
-                  style: TextStyles.sfprotext1
-                      .copyWith(color: Color(0xFF969696), fontSize: 48,fontFamily: 'SFProTextRegular')),
+                  style: TextStyles.sfprotext1.copyWith(
+                      color: Color(0xFF969696),
+                      fontSize: 48,
+                      fontFamily: 'SFProTextRegular')),
             ),
             Expanded(
               flex: 3,
@@ -142,3 +229,5 @@ class _GridWidgetState extends State<GridWidget> {
     );
   }
 }
+
+  double dbl = 0.0;
