@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calculator/widgets/grid_widget.dart';
+import 'package:flutter_calculator/widgets/home_page.dart';
+import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  //WidgetsFlutterBinding.ensureInitialized();
+/*await  WidgetsFlutterBinding.ensureInitialized();*/
+  runApp(const GetMaterialApp(home: MyApp()));
+
 }
 
 class MyApp extends StatelessWidget {
@@ -14,13 +18,10 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: GridWidget(),
+      home: const MyHomePage(),
 
     );
   }
-}
-
-class GetMaterialApp {
 
 }
 
